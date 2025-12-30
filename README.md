@@ -28,7 +28,7 @@ $ git clone https://github.com/racoonraduggy12/linux-clock-hud.git
 
 Then:
 
-$ cd ~/linux-clock-hud/time-overlay.py
+$ cd ~/linux-clock-hud/
 
 Then:
 
