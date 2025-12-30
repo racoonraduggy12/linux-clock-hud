@@ -3,9 +3,10 @@ A tiny little linux clock hud that disapears 1.5 seconds after launch.
 
 Meant to be launched using a keybind for tiling window managers. (requires python3)
 
-INSTALLATION
+_________________________________________________________________
+-__INSTALLATION__-
 
-________________________________EITHER_______________________________
+_______________________________EITHER_______________________________
 
 First click on the "<> code" button on this github page, then click on download zip.
 
@@ -18,7 +19,7 @@ Then add execute permisions:
 
 $ chmod +x time-overlay.py
 
-____________________________________OR____________________________________
+___________________________________OR___________________________________
 
 Open your terminal and run:
 
@@ -32,7 +33,7 @@ Then:
 
 $ chmod +x time-overlay.py
 
-___________________________________THEN____________________________________
+______________________________________________________________________
 
 Finally bind your prefered key to time-overlay.py (make sure to use the full path.)
 
