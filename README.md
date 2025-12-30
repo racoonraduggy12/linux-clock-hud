@@ -20,6 +20,7 @@ Then add execute permisions:
 $ chmod +x time-overlay.py
 
 ___________________________________OR___________________________________
+(REQUIRES git)
 
 Open your terminal and run:
 
