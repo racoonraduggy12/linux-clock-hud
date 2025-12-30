@@ -5,7 +5,7 @@ Meant to be launched using a keybind for tiling window managers. (requires pytho
 
 INSTALLATION
 
-___________________________________EITHER_______________________________
+________________________________EITHER_______________________________
 
 First click on the "<> code" button on this github page, then click on download zip.
 
