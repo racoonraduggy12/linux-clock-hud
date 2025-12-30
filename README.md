@@ -1,5 +1,5 @@
 # linux-clock-hud
-A tiny little linux clock hud that disapears 1.5 seconds after launch.
+A tiny little wayland clock hud that disapears 1.5 seconds after launch.
 
 Meant to be launched using a keybind for tiling window managers. (requires python3)
 
