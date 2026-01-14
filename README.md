@@ -11,7 +11,7 @@ _______________________________EITHER_______________________________
 First click on the "<> code" button on this github page, then click on download zip.
 
 Extract the .zip then change directory to the path with the time-overlay.py
-file by running the follwing in your terminal:
+file by running the follwing in your terminal replacing <path/to/.py/file> with the actual path to time-overlay.py that you downloaded:
 
 $ cd <path/to/.py/file>
 
