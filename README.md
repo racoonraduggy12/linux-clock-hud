@@ -35,15 +35,18 @@ Then:
 
 $ chmod +x time-overlay.py
 
+__________________________________________
+
+______FOR DEBIEN FORKS(linux mint, ubuntu, kubuntu, debien)______
+
+follow normal installation then run:
+
+$ sudo apt install python3 python3-pyqt6 qt6-base-dev libgl1
+
 ______________________________________________________________________
 
 Finally bind your prefered key to time-overlay.py (make sure to use the full path.)
 
 tested on Arch and linux mint
 
-__________________________________________
-______FOR DEBIEN FORKS(linux mint, ubuntu, kubuntu, debien)______
 
-follow normal installation then run:
-
-$ sudo apt install python3 python3-pyqt6 qt6-base-dev libgl1
