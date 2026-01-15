@@ -50,7 +50,7 @@ __________________________________________
 follow normal installation then run:
 
 ```
-sudo apt install python3 python3-pyqt6 qt6-base-dev libgl1
+sudo apt install python3 python3-pyqt6 qt6-base-dev
 ```
 
 ______________________________________________________________________
