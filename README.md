@@ -1,15 +1,23 @@
 # linux-clock-hud
 A tiny little clock hud that disapears 1.5 seconds after launch.
 
-Meant to be launched using a keybind for tiling window managers. (requires python3, and the Pyqt6 python module, may require qt6-base/qt6-base-dev)<br><br><br><br><br><br>
-
-
-
-
+Meant to be launched using a keybind for tiling window managers. <br><br><br><br><br><br>
 
 _________________________________________________________________
 ## -____INSTALLATION____-
 ________________________________________________________________
+Click on "Releases"  on the right of this GitHub page, click on the newest relaese either cunfigurable if you want to configure the time/date format (eg v1.0.1-configurable) or without configurable (eg v1.0.1) if your fine with the default format. now click time-overlay to download it.
+Finally map a keybind to the full path to this executable (eg ~/Downloads/time-overlay)
+
+#### If you got a configurable release
+Look for the CONFIGURATION section at the bottem of this README<br><br><br><br><br><br>
+_________________________________________________________________
+## -____INSTALLATION FROM SOURCE____-
+________________________________________________________________
+(Requires python3 and the Pyqt6 python module, may require qt6-base/qt6-base-dev)
+### FIRST
+Choose either the main or configurable-time-format branches depending on whether you want to configure your time format. You can switch branches by clicking the dropdown menu right above the source code on this page and selecting a branch.
+___________________________________________________________________
 ### EITHER
 
 Click on the green "<> code" button on the right of this github page, then click on download zip.
@@ -51,16 +59,16 @@ __________________________________________
 
 ### FOR DEBIEN FORKS(linux mint, ubuntu, kubuntu, debien)______
 
-follow normal installation then run:
+follow normal installation form source then run:
 
 ```
 sudo apt install python3 python3-pyqt6 qt6-base-dev
 ```
 
 ______________________________________________________________________
-Finally bind your prefered key to time-overlay.py (make sure to use the full path.)
 
-tested on Arch and linux mint<br><br><br><br><br><br>
+Finally bind your prefered key to time-overlay.py (make sure to use the full path.)
+Tested on Arch and linux mint if its not working for you install python3 python3-pyqt6 and qt6-base-dev from your package manager<br><br><br><br><br><br>
 
 _________________________________________________________________
 ## -____CONFIGURATION____-
@@ -77,4 +85,3 @@ time_format = %I:%M %p - %B %-d
 Might output:
 
 #### 07:00 PM - September 12
-
