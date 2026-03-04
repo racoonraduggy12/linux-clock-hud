@@ -1,79 +1,124 @@
 #!/usr/bin/env python3
 
-#    Linux Clock Hud
-#    Copyright (C) 2025  racoonraduggy12
-
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-
- #   You should have received a copy of the GNU General Public License
- #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 import sys
+from pathlib import Path
+import configparser
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QVBoxLayout
 from PyQt6.QtCore import Qt, QTimer
-from PyQt6.QtGui import QFont, QPalette, QColor
+from PyQt6.QtGui import QFont, QColor
 from datetime import datetime
-from PyQt6.QtCore import QTimer
+import argparse
+from PyQt6.QtGui import QFontMetrics
 
+# Config constants
+CONFIG_DIR = Path.home() / ".config" / "linux_clock_hud"
+CONFIG_FILE = CONFIG_DIR / "settings.conf"
+DEFAULT_FORMAT = "%H:%M:%S"
+
+def load_or_create_config():
+    """Load time format from config, or create config with default if missing."""
+    CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+    config = configparser.ConfigParser(interpolation=None)
+    if CONFIG_FILE.exists():
+        config.read(CONFIG_FILE)
+        time_format = config.get("Clock", "time_format", fallback=DEFAULT_FORMAT)
+    else:
+        config["Clock"] = {"time_format": DEFAULT_FORMAT}
+        with open(CONFIG_FILE, "w") as f:
+            config.write(f)
+        time_format = DEFAULT_FORMAT
+    return time_format
+
+def save_config(time_format):
+    """Save time format to .conf file."""
+    CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+    config = configparser.ConfigParser(interpolation=None)
+    config["Clock"] = {"time_format": time_format}
+    with open(CONFIG_FILE, "w") as f:
+        config.write(f)
+    print(f"Saved time format '{time_format}' to {CONFIG_FILE}")
 class ClockOverlay(QWidget):
-    def __init__(self):
+    def __init__(self, time_format=DEFAULT_FORMAT):
         super().__init__()
+        self.time_format = time_format
 
-        # Window setup
         self.setWindowFlags(
             Qt.WindowType.FramelessWindowHint |
             Qt.WindowType.WindowStaysOnTopHint |
             Qt.WindowType.Tool
         )
-
-        # Make the window itself translucent
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.setFixedSize(250, 100)  # small window
+        self.setFixedSize(250, 100)
 
-        # Center window on screen
-        screen = QApplication.primaryScreen().availableGeometry()
-
-        # White text in center
         layout = QVBoxLayout()
-        layout.setContentsMargins(0,0,0,0)
+        layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(layout)
+
         self.label = QLabel(self)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        font = QFont("Monospace", 30, QFont.Weight.Bold)
-        self.label.setFont(font)
+        self.base_font_size = 30
+        self.font = QFont("Monospace", self.base_font_size, QFont.Weight.Bold)
+        self.label.setFont(self.font)
         self.label.setStyleSheet("color: rgb(0, 255, 186); background: none;")
         layout.addWidget(self.label)
 
-        # Timer to update time
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_time)
         self.timer.start(200)
 
-        # Paint event to fill the entire window with semi-transparent black
-        self.opacity = 0.85  # 85%
+        self.opacity = 0.85
         QTimer.singleShot(1500, lambda: sys.exit(0))
-
     def paintEvent(self, event):
-        from PyQt6.QtGui import QPainter
+        from PyQt6.QtGui import QPainter, QColor
         painter = QPainter(self)
         color = QColor(0, 0, 0)
-        color.setAlphaF(self.opacity)  # 0.85 alpha
+        color.setAlphaF(self.opacity)
         painter.fillRect(self.rect(), color)
 
     def update_time(self):
-        now = datetime.now().strftime("%H:%M:%S")
+        now = datetime.now().strftime(self.time_format)
         self.label.setText(now)
+        self.adjust_font_to_fit(now)
+
+    def adjust_font_to_fit(self, text):
+        """Reduce font size if text is too wide for the window."""
+        max_width = self.width() - 10  # small margin
+        font_size = self.base_font_size
+        font = QFont(self.font)
+        font.setPointSize(font_size)
+        metrics = QFontMetrics(font)
+
+        while metrics.horizontalAdvance(text) > max_width and font_size > 5:
+            font_size -= 1
+            font.setPointSize(font_size)
+            metrics = QFontMetrics(font)
+
+        self.label.setFont(font)
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Tiny Linux Clock HUD")
+    parser.add_argument(
+        "-f", "--format",
+        help="Time format string (Python strftime style). Overrides config file."
+    )
+    parser.add_argument(
+        "--save", action="store_true",
+        help="Save the given format to the config file for future runs."
+    )
+    args = parser.parse_args()
+
+    # Load existing config or create default if missing
+    time_format = load_or_create_config()
+
+    # Override if --format is given
+    if args.format:
+        time_format = args.format
+
+    # Save if requested
+    if args.save and args.format:
+        save_config(args.format)
+
     app = QApplication(sys.argv)
-    overlay = ClockOverlay()
+    overlay = ClockOverlay(time_format=time_format)
     overlay.show()
     sys.exit(app.exec())
