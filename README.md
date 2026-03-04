@@ -7,8 +7,13 @@ _________________________________________________________________
 ## -____INSTALLATION____-
 ________________________________________________________________
 Click on "Releases"  on the right of this GitHub page, click on the one of the newest releases either configurable if you want to configure the time/date format (eg v1.0.1-configurable) or without configurable (eg v1.0.1) if your fine with the default format. now click time-overlay to download it.
-Finally map a keybind to the full path to this executable (eg ~/Downloads/time-overlay)
+Open a terminal and run the following command replacing /path with the full path to the executable (eg ~/Downloads/time-overlay)
 
+```
+chmod +x /path
+```
+
+Finally map a keybind to the full path to this executable 
 #### If you got a configurable release
 Look for the CONFIGURATION section at the bottem of this README<br><br><br><br><br><br>
 _________________________________________________________________
