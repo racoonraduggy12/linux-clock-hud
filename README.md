@@ -1,7 +1,7 @@
 # linux-clock-hud
 A tiny little clock hud that disapears 1.5 seconds after launch.
 
-Meant to be launched using a keybind for tiling window managers. <br><br><br><br><br><br>
+Meant to be launched using a keybind for tiling window managers. Installing from source makes it launch much faster, but is slightly more work<br><br><br><br><br><br>
 
 _________________________________________________________________
 ## -____INSTALLATION____-
