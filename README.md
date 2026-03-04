@@ -6,7 +6,7 @@ Meant to be launched using a keybind for tiling window managers. <br><br><br><br
 _________________________________________________________________
 ## -____INSTALLATION____-
 ________________________________________________________________
-Click on "Releases"  on the right of this GitHub page, click on the newest relaese either cunfigurable if you want to configure the time/date format (eg v1.0.1-configurable) or without configurable (eg v1.0.1) if your fine with the default format. now click time-overlay to download it.
+Click on "Releases"  on the right of this GitHub page, click on the one of the newest releases either configurable if you want to configure the time/date format (eg v1.0.1-configurable) or without configurable (eg v1.0.1) if your fine with the default format. now click time-overlay to download it.
 Finally map a keybind to the full path to this executable (eg ~/Downloads/time-overlay)
 
 #### If you got a configurable release
