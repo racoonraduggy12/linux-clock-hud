@@ -29,7 +29,7 @@ ___________________________________________________________________
 Click on the green "<> code" button on the right of this github page, then click on download zip.
 
 Extract the .zip then change directory to the path with the time-overlay.py
-file by running the follwing in your terminal replacing <path/to/.py/file> with the actual path to time-overlay.py that you downloaded:
+file by running the follwing in your terminal replacing <path/to/.py/file> with the actual path to the directory containing time-overlay.py that you downloaded (eg ~/Downloads/):
 ```
 cd <path/to/.py/file>
 ```
@@ -91,6 +91,3 @@ time_format = %I:%M %p - %B %-d
 Might output:
 
 #### 07:00 PM - September 12
-
-
-
