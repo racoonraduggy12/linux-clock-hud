@@ -139,6 +139,10 @@ if __name__ == "__main__":
     if args.format:
         time_format = args.format
 
+    # Override if --style is given
+    if args.style:
+        style_sheet = args.style
+
     # Save if requested
     if args.save:
         if args.format:
