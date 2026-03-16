@@ -91,3 +91,36 @@ time_format = %I:%M %p - %B %-d
 Might output:
 
 #### 07:00 PM - September 12
+
+You can also pass a Qapplication stylesheet.
+For example:
+
+```
+style = color: rgb(100, 50, 0); background: none;
+```
+
+Would give dark orange text.
+
+Both of these options can also be ovverriden with arguments when running the source code version. Your stylesheet is overriden with:
+```
+-s
+```
+or...
+```
+--style
+```
+Your time format is overriden with:
+```
+-f
+```
+or...
+```
+--format
+```
+if you wish to make these overrides save to your config use:
+```
+--save
+```
+For example:
+```
+python ~/linux-clock-hud/time-overlay.py -f "%H:%M:%S" -s "color: rgb(100, 50, 0); background: none;" --save
